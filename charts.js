@@ -30,7 +30,6 @@ function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildMetadata(newSample);
   buildCharts(newSample);
-  
 }
 
 // Demographics Panel 
@@ -99,7 +98,7 @@ function buildCharts(sample) {
       text: bar_otu_labels,
       type: "bar",
       orientation: "h"  
-  }];
+    }];
 
     // 9. Create the layout for the bar chart. 
     // Note: Margin layout source: "https://plotly.com/javascript/setting-graph-size/"
@@ -126,18 +125,18 @@ function buildCharts(sample) {
   // Note: Marker styling source: "https://plotly.com/javascript/marker-style/" 
   var bubbleData = [{
     x: otu_ids,
-    y: sample_vals,
+    y: sample_values,
     text: otu_labels,
     mode: "markers",
     marker: {
       color: otu_ids,
       size: sample_values,
-      line: {
-        color: 'rgb(220, 255, 255)',
-        width: 4
-      }
+      // line: {
+      //   color: 'rgb(220, 255, 255)',
+      //   width: 4
+      //}
     }
-  }];
+    }];
 
   // 2.2) Create the layout for the bubble chart.
   var bubbleLayout = {
@@ -160,7 +159,6 @@ function buildCharts(sample) {
                       //>---<Begin Del. 3>---<\\
   
   // 3.1) Create a variable that filters the metadata array for the sample number passed in.
-  var samples = data.samples;
   var metaData = data.metadata;
   var resultArray2 = metaData.filter(sampleObj => sampleObj.id == sample);
 
@@ -171,16 +169,16 @@ function buildCharts(sample) {
   var wfreq = result2.wfreq;
 
   // 3.4) Create the trace object for the guage chart.
-  var guageData = [{
+  var gaugeData = [{
     type: "indicator",
     mode: "gauge+number",
     value: wfreq,
     gauge:{
       tickmode: "array",
       tickvals: [0,2,4,6,8,10],
-      bar: {color: "black"},
+      bar: { color: "black"},
       axis:{
-        range: [null,10],
+        range:[null,10],
         dtick: "2",
       },
       steps:[
@@ -189,8 +187,8 @@ function buildCharts(sample) {
         {range: [4,6],color: "yellow"},
         {range: [6,8],color: "lightgreen"},
         {range: [8,10],color: "green"}
-      ]
-    }
+        ]
+      } 
   }];
       
   // Note: the following code block was made with the present help of classmate Joe Eck and can be found
